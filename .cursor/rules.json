@@ -1,0 +1,23 @@
+{
+  "rules": [
+    {
+      "id": "pr-e2e-docker-required",
+      "description": "Before any PR is created, the agent MUST run the Docker E2E test suite. If tests fail, the agent is authorized to self-correct and loop until success.",
+      "when": {
+        "event": "before_pr_create"
+      },
+      "require": [
+        {
+          "type": "command",
+          "name": "docker-e2e",
+          "run": "docker compose run --rm e2e",
+          "success_criteria": "exit_code_0"
+        }
+      ],
+      "on_failure": {
+        "policy": "self_correct_and_retry_until_success"
+      }
+    }
+  ]
+}
+

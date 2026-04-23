@@ -1,0 +1,7 @@
+{
+  "name": "shopify-ai-umbrella",
+  "private": true,
+  "workspaces": [
+    "sniper-plugin"
+  ]
+}
