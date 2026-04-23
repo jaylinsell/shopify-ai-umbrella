@@ -17,6 +17,34 @@ Use the repo-root `docker-compose.yml` as the single source of truth for local i
 - **State**: `postgres` + `redis`
 - **E2E**: `e2e` service (Playwright)
 
+### Database (Postgres + Prisma)
+
+`sniper-plugin` uses **Prisma with Postgres** for session storage.
+
+- **Compose contract**: `DATABASE_URL` is set for `sniper-plugin` to point at the `postgres` service.
+- **Migrations**: `sniper-plugin` runs `prisma migrate deploy` on container start (`npm run docker-start`).
+
+If you need to reset local DB state completely:
+
+```bash
+docker compose down -v
+docker compose up -d postgres redis sniper-plugin
+```
+
+### Local “smoke” env vars (Docker)
+
+The Docker Compose file includes **dummy** Shopify env vars so the app can boot for local smoke/E2E:
+
+- `SHOPIFY_APP_URL`
+- `SHOPIFY_API_KEY` / `SHOPIFY_API_SECRET` (dummy values)
+- `SCOPES`
+
+These are **not** real production credentials.
+
+### E2E runner details
+
+The `e2e` service bind-mounts the repo at `/work` **but** uses a named volume for `/work/node_modules` to avoid `npm ci` failures caused by macOS bind-mount semantics.
+
 ### E2E command
 
 Run E2E via Docker (preferred):
