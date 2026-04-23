@@ -1,7 +1,13 @@
 {
   "name": "shopify-ai-umbrella",
   "private": true,
+  "scripts": {
+    "e2e:docker": "docker compose run --rm e2e"
+  },
   "workspaces": [
     "sniper-plugin"
-  ]
+  ],
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
 }

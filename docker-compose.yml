@@ -26,6 +26,7 @@ services:
       DATABASE_URL: postgres://app:app@postgres:5432/app
       REDIS_URL: redis://redis:6379
       NODE_ENV: development
+      PORT: 3000
     ports:
       - "3000:3000"
     depends_on:
@@ -41,8 +42,7 @@ services:
       BASE_URL: http://sniper-plugin:3000
     depends_on:
       - sniper-plugin
-    # Placeholder: wire up once the app scaffold is present
-    command: ["bash", "-lc", "echo 'E2E runner placeholder. Add Playwright/Cypress config after app scaffold.'"]
+    command: ["bash", "-lc", "cd /work && npm ci && npx playwright install --with-deps && npx playwright test"]
 
 volumes:
   postgres_data:
