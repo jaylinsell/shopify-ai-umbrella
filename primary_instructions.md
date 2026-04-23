@@ -4,6 +4,12 @@
 
 Before starting any new sub-project in this monorepo, **always read this file first** and follow it.
 
+## Architecture decisions (ADRs)
+
+Durable decisions (why we chose X) live in:
+
+- `docs/adr/README.md`
+
 ## Repo layout
 
 - Root: `~/Dev/ShopifyAI_Umbrella`
